@@ -1,0 +1,13 @@
+{
+    "name": "augustin/forteroche",
+    "authors": [
+        {
+            "name": "kavera",
+            "email": "augustin.kavera@outlook.fr"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    }
+}
