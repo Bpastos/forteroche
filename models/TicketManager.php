@@ -8,14 +8,16 @@ class TicketManager extends Bdd
 {
 
     /**
-     * Créer un ticket
-     * @param $title
-     * @param $content
+     * Ajoute un ticket à la bdd
+     * @param Ticket $ticket
      */
-    public function createTicket($title, $content)
+    public function add(Ticket $ticket)
     {
-        $req = $this->connexionDb()->prepare('INSERT INTO ticket(tick_title, tick_content) VALUES (?, ?)');
-        $req->execute(array($title, $content));
+        $req = $this->connexionDb()->prepare('INSERT INTO ticket(tick_title, tick_content,tick_date) VALUES (:title, :content, NOW())');
+        $req->bindValue(':title', $ticket->getTickTitle());
+        $req->bindValue(':content',$ticket->getTickContent());
+
+        $req->execute();
     }
 
     /**
@@ -44,7 +46,7 @@ class TicketManager extends Bdd
         $req = $this->connexionDb()->prepare('SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
         tick_title AS title, tick_content AS content FROM ticket ORDER BY tick_date DESC LIMIT 0, 5');
 
-        return $req;
+        $req->fetchAll();
     }
 
     /**
@@ -55,8 +57,13 @@ class TicketManager extends Bdd
      */
     public function updateTicket($title, $content, $tickId)
     {
-        $req = $this->connexionDb()->prepare('UPDATE ticket SET tick_title = ?, tick_content = ?, WHERE tick_id = ?');
-        $req->execute(array($title, $content, $tickId));
+        $req = $this->connexionDb()->prepare('UPDATE ticket SET tick_title = :title, tick_content = :content, 
+        tick_date = NOW() WHERE tick_id = :tickId');
+        $req->bindValue(':title', $title);
+        $req->bindValue(':content', $content);
+        $req->bindValue(':tickId', (int) $tickId);
+        $req->execute();
+
     }
 
     /**

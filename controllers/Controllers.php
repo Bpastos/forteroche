@@ -41,7 +41,7 @@ class Controllers
         $ticketM = new TicketManager();
         $content = $ticketM->getTickets();
 
-        // Require la vue de la liste des tickets
+        include '../views/template/default.php';
 
     }
 

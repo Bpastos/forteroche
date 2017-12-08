@@ -70,6 +70,7 @@ class Comment
      */
     public function setComAuthor($comAuthor)
     {
+
         $this->comAuthor = $comAuthor;
     }
 
