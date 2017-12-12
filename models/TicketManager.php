@@ -26,15 +26,15 @@ class TicketManager extends Bdd
      *
      * @return mixed
      */
-    public function getTicket($tickId)
+    public function getTicket($postId)
     {
         $req = $this->connexionDb()->prepare('SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
         tick_title AS title, tick_content AS content FROM ticket WHERE tick_id = ?');
-        $req->execute(array($tickId));
+        $req->execute(array($postId));
 
-        $ticket = $req->fetch();
+        $post = $req->fetch();
 
-        return $ticket;
+        return $post;
     }
 
     /**
@@ -43,10 +43,10 @@ class TicketManager extends Bdd
      */
     public function getTickets()
     {
-        $req = $this->connexionDb()->prepare('SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
+        $req = $this->connexionDb()->query('SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
         tick_title AS title, tick_content AS content FROM ticket ORDER BY tick_date DESC LIMIT 0, 5');
 
-        $req->fetchAll();
+        return $req;
     }
 
     /**

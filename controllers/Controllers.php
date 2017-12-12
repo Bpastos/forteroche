@@ -39,9 +39,9 @@ class Controllers
     public function listTickets()
     {
         $ticketM = new TicketManager();
-        $content = $ticketM->getTickets();
+        $posts = $ticketM->getTickets();
 
-        include '../views/template/default.php';
+        require '../views/template/default.php';
 
     }
 
