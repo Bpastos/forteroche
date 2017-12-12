@@ -25,7 +25,7 @@ class Controllers
     public function addComment ($author, $content, $tickId)
     {
         $commentM = new CommentManager();
-        $postComment = $commentM->createComment($author, $content, $tickId);
+        $postComment = $commentM->addComment($author, $content, $tickId);
 
         if ($postComment === false) {
             throw new \Exception('Il est impossible d\'ajouter le commentaire !');
@@ -33,19 +33,18 @@ class Controllers
 
         return $postComment;
 
-
     }
 
-    public function listTickets()
+    public function listPosts()
     {
-        $ticketM = new TicketManager();
-        $posts = $ticketM->getTickets();
+        $ticketManager = new TicketManager();
+        $posts = $ticketManager->getTickets();
 
         require '../views/template/default.php';
 
     }
 
-    public function getTicket()
+    public function post()
     {
         $ticketM = new TicketManager();
         $commentM = new CommentManager();

@@ -11,7 +11,16 @@ while ($data = $posts->fetch()) { ?>
     <div>
         <h2>
             <a href="../../index.php?action=ticket&id=<?= $data['id']; ?>"><?= htmlspecialchars($data['title']) ?></a>
-            <em>le <?= $data['date'] ?></em>
+            <em>le <?= $data['dateCreated'] ?></em>
         </h2>
-    </div>
 
+        <p>
+            <?= nl2br(htmlspecialchars($data['content'])) ?>
+        </p>
+    </div>
+<?php }
+$posts->closeCursor();
+
+$content = ob_get_clean();
+
+require 'views/template/default.php'; ?>

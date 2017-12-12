@@ -13,7 +13,7 @@ class CommentManager extends Bdd
      * @param $content
      * @param $tickId
      */
-    public function createComment($author, $content, $tickId)
+    public function addComment($author, $content, $tickId)
     {
         $req = $this->connexionDb()->prepare('INSERT INTO comment(com_author, com_content, tick_id) VALUES (?, ?, ?)');
         $req->execute(array($author, $content, $tickId));
@@ -21,15 +21,14 @@ class CommentManager extends Bdd
 
     /**
      * Obtenir les commentaires correspondant à l'id du ticket
-     * @param $tickId
      *
-     * @return bool
      */
-    public function getComments($tickId)
+    public function getComments($postId)
     {
-        $req = $this->connexionDb()->prepare('SELECT com_id AS id, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCreated, 
-        com_author AS author, com_content AS content FROM comment WHERE tick_id = ? ORDER BY com_date DESC');
-        $comments = $req->execute(array($tickId));
+        $db = $this->connexionDb();
+        $comments = $db->prepare('SELECT com_id, com_author, com_content, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCommentCreated 
+                                  FROM comment WHERE tick_id = ? ORDER BY com_date DESC');
+        $comments->execute(array($postId));
 
         return $comments;
     }
