@@ -26,7 +26,7 @@ class CommentManager extends Bdd
     public function getComments($postId)
     {
         $db = $this->connexionDb();
-        $comments = $db->prepare('SELECT com_id, com_author, com_content, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCommentCreated 
+        $comments = $db->prepare('SELECT com_id AS id, com_author AS author , com_content AS comment, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCommentCreated 
                                   FROM comment WHERE tick_id = ? ORDER BY com_date DESC');
         $comments->execute(array($postId));
 

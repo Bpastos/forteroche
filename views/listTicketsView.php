@@ -2,7 +2,7 @@
 
 ob_start(); ?>
 
-    <h1>Un billet simple pour l'Alaska</h1>
+    <h1 style="text-align: center">Un billet simple pour l'Alaska</h1>
 
 <?php
 
@@ -23,4 +23,4 @@ $posts->closeCursor();
 
 $content = ob_get_clean();
 
-require 'views/template/default.php'; ?>
+require 'template/default.php'; ?>

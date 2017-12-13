@@ -2,6 +2,7 @@
 
 namespace models;
 
+include "../controllers/Controllers.php";
 use PHPUnit\Runner\Exception;
 use controllers\Controllers;
 class Router extends Controllers
