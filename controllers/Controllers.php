@@ -40,7 +40,7 @@ class Controllers
         $ticketManager = new TicketManager();
         $posts = $ticketManager->getTickets();
 
-        require '../views/template/default.php';
+        require '../views/listTicketsView.php';
 
     }
 

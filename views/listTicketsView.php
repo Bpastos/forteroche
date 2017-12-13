@@ -10,7 +10,7 @@ while ($data = $posts->fetch()) { ?>
 
     <div>
         <h2>
-            <a href="../../index.php?action=ticket&id=<?= $data['id']; ?>"><?= htmlspecialchars($data['title']) ?></a>
+            <a href="../public/index.php?action=post&id=<?= $data['id']; ?>"><?= htmlspecialchars($data['title']) ?></a>
             <em>le <?= $data['dateCreated'] ?></em>
         </h2>
 

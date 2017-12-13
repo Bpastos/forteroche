@@ -1,12 +1,9 @@
 <?php
 
-
 namespace models;
 
-
-use controllers\Controllers;
 use PHPUnit\Runner\Exception;
-
+use controllers\Controllers;
 class Router extends Controllers
 {
 
@@ -14,7 +11,9 @@ class Router extends Controllers
     public function blog() {
 
 
+
         try {
+
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'listposts') {
                     $this->listPosts();
