@@ -12,19 +12,9 @@
 
     <body>
 
-        <?php
+        <?php include '../views/nav.php'?>
 
-            // Menu de navigation
-
-            // Carroussel
-
-            echo $content;
-
-            // Footer du site
-
-        ?>
-
-
+        <?= $content; ?>
 
     </body>
 </html>
