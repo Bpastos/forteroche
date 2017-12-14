@@ -52,7 +52,7 @@ class Controllers
         $post = $ticketM->getTicket($_GET['id']);
         $comment = $commentM->getComments($_GET['id']);
 
-        // Require la page vue d'un ticket
+        require '../views/ticketView.php';
     }
 
 }

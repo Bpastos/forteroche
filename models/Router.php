@@ -40,7 +40,7 @@ class Router extends Controllers
             }
         } catch (Exception $e) {
             $errorMessage = $e->getMessage();
-            require 'views/errorView.php';
+            require '../views/errorView.php';
         }
 
     }
