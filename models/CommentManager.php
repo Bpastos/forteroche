@@ -30,7 +30,9 @@ class CommentManager extends Bdd
                                   FROM comment WHERE tick_id = ? ORDER BY com_date DESC');
         $comments->execute(array($postId));
 
-        return $comments;
+        $result = $comments->fetchAll();
+
+        return $result;
     }
 
     /**

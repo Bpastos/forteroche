@@ -6,18 +6,29 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
       <meta name="description" content="">
       <meta name="author" content="Jean Forteroche">
-      <link rel="icon" href="../../public/img/favicon.ico">
+      <link rel="icon" href="img/favicon.ico">
       <title><?= $title ?></title>
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body>
+            <div>
+                <header class="page-header">
+                    <div class="container-fluid">
 
-        <?php include '../views/nav.php'?>
+                    </div>
+                    <h1 style="text-align: center">Un billet simple pour l'Alaska</h1>
+                    <?php include '../views/nav.php';?>
+                </header>
 
-        <?= $content; ?>
+            </div>
 
-        <?php include '../views/footer.php' ?>;
+            <div class="container">
+
+            <?= $content; ?>
+
+            <?php include '../views/footer.php'; ?>
+        </div>
     </body>
 </html>

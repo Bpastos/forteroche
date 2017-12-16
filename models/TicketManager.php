@@ -49,6 +49,7 @@ class TicketManager extends Bdd
         return $req;
     }
 
+
     /**
      * Mettre à jour un ticket
      * @param $title
@@ -76,5 +77,11 @@ class TicketManager extends Bdd
         $req->execute(array($tickId));
     }
 
+
+    public function count()
+    {
+        $result = $this->connexionDb()->query('SELECT COUNT(*) FROM ticket')->fetchColumn();
+        return $result;
+    }
 
 }

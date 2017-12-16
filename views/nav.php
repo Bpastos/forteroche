@@ -1,8 +1,7 @@
     <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+        <div class="container">
                 <ul class="nav navbar-nav">
                     <li> <a href="#">Accueil</a> </li>
-                    <li> <a href="#">Chapitres</a> </li>
                     <li> <a href="#">A propos</a> </li>
                     <li> <a href="#">Contact</a> </li>
                 </ul>

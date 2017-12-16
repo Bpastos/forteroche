@@ -10,7 +10,7 @@
 
     <body>
       <div class="has-error">
-          <h1 class="alert alert-warning" style="text-align: center">Erreur 404</h1>
+          <h1 class="alert alert-warning" style="text-align: center">Erreur 404 <?= $errorMessage; ?></h1>
       </div>
 
     </body>

@@ -2,26 +2,31 @@
 
 ob_start(); ?>
 
-    <h1 style="text-align: center">Un billet simple pour l'Alaska</h1>
+
 
 <?php
 
 while ($data = $posts->fetch()) { ?>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
+    <article>
+        <section class="page-header">
             <h2>
-                <a href="../../index.php?action=post&id=<?= $data['id']; ?>"><?= htmlspecialchars($data['title']) ?></a>
-                <em>le <?= $data['dateCreated'] ?></em>
+                <?= htmlspecialchars($data['title']); ?>
+                <p><small>le <?= $data['dateCreated']; ?></small></p>
             </h2>
+        </section>
 
-            <p>
-                <?= nl2br(htmlspecialchars($data['content'])) ?>
-            </p>
-            </div>
-        </div>
-    </div>
+        <section class="">
+            <p><?= substr(htmlspecialchars($data['content']), 0, 500).'...'; ?></p>
+        </section><br/>
+            <p><a href="index.php?action=post&id=<?= $data['id']; ?>" class="btn btn-default">Lire la suite</a></p>
+    </article>
+    <nav aria-label="Page de navigation" class="text-center">
+        <ul class="pagination">
+
+        </ul>
+    </nav>
+
 <?php }
 $posts->closeCursor();
 

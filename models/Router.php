@@ -28,6 +28,7 @@ class Router extends Controllers
                     if (isset($_GET['id']) && $_GET['id'] > 0) {
                         if (!empty($_POST['author']) && !empty($_POST['comment'])) {
                             $this->addComment($_POST['author'], $_POST['comment'], $_GET['id']);
+                            $this->post();
                         } else {
                             throw new Exception('Tous les champs ne sont pas remplis !');
                         }
