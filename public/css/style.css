@@ -1,0 +1,43 @@
+/** Partie test color **/
+
+.bleu {
+    background-color: #5bc0de;
+}
+
+.rose {
+    background-color: rosybrown;
+}
+
+body {
+    background-color: #8a6d3b;
+}
+
+.rouge {
+    background-color: #761c19;
+}
+
+.content {
+    margin: 20px;
+}
+
+.commentaire {
+    padding: 20px;
+}
+
+.titleCom {
+    padding-left: 20px;
+}
+/** Fin de la partie test color**/
+
+
+/** A conserver **/
+
+.page-header {
+    margin: 0px;
+}
+
+
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}

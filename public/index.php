@@ -4,7 +4,6 @@ include '../config.php';
 
 
 
-
 $p = new \models\Router();
 $p->blog();
 

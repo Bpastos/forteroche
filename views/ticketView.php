@@ -6,18 +6,21 @@ ob_start(); ?>
 
 
     <div class="row">
-        <h2>
+        <h2 style="text-align: center">
             <?= htmlspecialchars($post['title']) ?>
         </h2>
-        <p><em>le <?= $post['dateCreated'] ?></em></p>
+        <p class="titleCom"><em>le <?= $post['dateCreated'] ?></em></p>
 
-        <p>
-            <?= nl2br(htmlspecialchars($post['content'])) ?>
-        </p>
-    </div>
+        <div class="modal-content " style="text-align: justify">
+            <p class="content">
+                <?= nl2br(htmlspecialchars($post['content'])) ?>
+            </p>
+        </div>
+
+    </div><br/>
     <div class="row">
         <fieldset>
-            <h4>Commentaires :</h4>
+            <legend class="titleCom">Commentaires :</legend>
             <form class="col-lg-6" action="index.php?action=addComment&amp;id=<?= $post['id']; ?>" method="post">
 
                 <div class="form-group">
@@ -28,6 +31,7 @@ ob_start(); ?>
                     <label for="comment">Votre commentaire</label><br/>
                     <textarea id="comment" name="comment" class="form-control"></textarea>
                 </div>
+
                 <div class="form-group">
                     <input type="submit"/>
                 </div>
@@ -37,15 +41,16 @@ ob_start(); ?>
 
     </div>
 
-    <div class="row">
+    <div class="row commentaire">
+        <fieldset>
+            <?php
 
-        <?php
+            foreach ($comment as $com) {?>
 
-        foreach ($comment as $com) {?>
-
-            <p><strong><?= htmlspecialchars($com['author'])?></strong> le <?= $com['dateCommentCreated'] ?></p>
-            <p><?= nl2br(htmlspecialchars($com['comment']))?></p>
-        <?php } ?>
+                <p><strong><?= htmlspecialchars($com['author'])?></strong> le <?= $com['dateCommentCreated'] ?></p>
+                <p><?= nl2br(htmlspecialchars($com['comment']))?></p>
+            <?php } ?>
+        </fieldset>
     </div>
     <p><a href="index.php">Retour à la liste des billets</a></p>
 <?php $content = ob_get_clean();

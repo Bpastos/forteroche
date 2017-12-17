@@ -14,7 +14,7 @@
 
     <body>
             <div>
-                <header class="page-header">
+                <header class="page-header bleu">
                     <div class="container-fluid">
 
                     </div>
@@ -24,11 +24,14 @@
 
             </div>
 
-            <div class="container">
+            <div class="container rose">
 
             <?= $content; ?>
+            </div>
+            <div class="container-fluid">
+                <?php include '../views/footer.php'; ?>
+            </div>
 
-            <?php include '../views/footer.php'; ?>
-        </div>
+
     </body>
 </html>
