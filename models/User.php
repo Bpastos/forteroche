@@ -5,80 +5,44 @@ namespace models;
 
 
 
-class User
+use PHPUnit\Runner\Exception;
+
+class User extends Bdd
 {
 
-    private $id;
+    public function userExists($login) {
+        $req = 'SELECT user_id FROM user WHERE user_login = ?';
+        $user = $this->connexionDb()->prepare($req, array($login));
 
-    private $login;
-
-    private $password;
-
-    private $role;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
+        return ($user->rowCount() == 1);
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
+
+    public function getUserHash($login) {
+        $req = 'SELECT user_psw AS hash FROM user WHERE user_login = ?';
+        $hashage = $this->connexionDb()->prepare($req, array($login));
+
+        return $hashage->fetch();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLogin()
-    {
-        return $this->login;
+    public function getUser($login) {
+        $req = 'SELECT user_id AS userId, user_login AS login, user_psw AS psw, user_role AS role FROM user WHERE user_login = ?';
+        $user = $this->connexionDb()->prepare($req, array($login));
+
+        if ($user->rowCount() == 1) {
+            return $user->fetch();
+        } else {
+            throw new Exception('Aucun utilisateur ne correspond aux identifiants fournis, veuillez réessayer.');
+        }
     }
 
-    /**
-     * @param mixed $login
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
+    public function changePsw($newPsw, $login) {
+        $req = 'UPDATE user SET user_psw = ? WHERE user_login = ?';
+        $result = $this->connexionDb()->query($req, array($newPsw, $login));
+
+        return $result;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param mixed $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
 
 
 

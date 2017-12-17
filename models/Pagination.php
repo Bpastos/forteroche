@@ -38,7 +38,7 @@ class Pagination
 
 
 $page = new Pagination();
-$data = array("hey","Salut","Test de pagination");
+$data = array("hey","Salut","Test de pagination","Test de page 4");
 $numbers = $page->paginate($data,1);
 
 $result = $page->fetchResult();
