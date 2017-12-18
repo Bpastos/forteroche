@@ -27,6 +27,7 @@
             <div class="container rose">
 
             <?= $content; ?>
+
             </div>
             <div class="container-fluid">
                 <?php include '../views/footer.php'; ?>

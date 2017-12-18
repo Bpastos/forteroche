@@ -2,7 +2,7 @@
 
 namespace models;
 
-include "../controllers/Controllers.php";
+
 use PHPUnit\Runner\Exception;
 use controllers\Controllers;
 class Router extends Controllers
@@ -35,9 +35,9 @@ class Router extends Controllers
                     } else {
                         throw new Exception('Aucun identifiant de billet envoyé');
                     }
-                } elseif ($_GET['action'] == 'login') {
+                } /*elseif ($_GET['action'] == 'login') {
 
-                }
+                }*/
             } else {
                 $this->listPosts();
             }

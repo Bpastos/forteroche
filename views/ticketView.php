@@ -49,6 +49,7 @@ ob_start(); ?>
 
                 <p><strong><?= htmlspecialchars($com['author'])?></strong> le <?= $com['dateCommentCreated'] ?></p>
                 <p><?= nl2br(htmlspecialchars($com['comment']))?></p>
+
             <?php } ?>
         </fieldset>
     </div>
