@@ -16,7 +16,7 @@ class Router extends Controllers
         try {
 
             if (isset($_GET['action'])) {
-                if ($_GET['action'] == 'listposts') {
+                if ($_GET['action'] == 'home') {
                     $this->listPosts();
                 } elseif ($_GET['action'] == 'post') {
                     if (isset($_GET['id']) && $_GET['id'] > 0) {

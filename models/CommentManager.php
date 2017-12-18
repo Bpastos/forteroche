@@ -15,8 +15,11 @@ class CommentManager extends Bdd
      */
     public function addComment($author, $content, $tickId)
     {
-        $req = $this->connexionDb()->prepare('INSERT INTO comment(com_author, com_content, tick_id) VALUES (?, ?, ?)');
-        $req->execute(array($author, $content, $tickId));
+        $req = $this->connexionDb()->prepare('INSERT INTO comment(com_author, com_content, tick_id, com_date) VALUES (?, ?, ?, NOW())');
+        $result = $req->execute(array($author, $content, $tickId));
+
+        return $result;
+
     }
 
     /**
