@@ -1,6 +1,6 @@
 <div class="section">
     <div class="container">
-        <form method="POST" action="?controller=login&action=login">
+        <form method="POST" action="?action=login">
             <p class="flow-text center">Vous devez être connecté pour accéder à cette zone.</p>
             <div class="row">
                 <div class="input-group col s12">
