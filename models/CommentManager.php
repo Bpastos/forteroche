@@ -4,7 +4,7 @@
 namespace models;
 
 
-class CommentManager extends Bdd
+class CommentManager extends TicketManager
 {
 
     /**
@@ -15,8 +15,8 @@ class CommentManager extends Bdd
      */
     public function addComment($author, $content, $tickId)
     {
-        $req = $this->connexionDb()->prepare('INSERT INTO comment(com_author, com_content, tick_id, com_date) VALUES (?, ?, ?, NOW())');
-        $result = $req->execute(array($author, $content, $tickId));
+        $sql = 'INSERT INTO comment(com_author, com_content, tick_id, com_date) VALUES (?, ?, ?, NOW())';
+        $result = $this->sqlPrepare($sql,array($author, $content, $tickId));
 
         return $result;
 
@@ -28,11 +28,9 @@ class CommentManager extends Bdd
      */
     public function getComments($postId)
     {
-        $db = $this->connexionDb();
-        $comments = $db->prepare('SELECT com_id AS id, com_author AS author , com_content AS comment, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCommentCreated 
-                                  FROM comment WHERE tick_id = ? ORDER BY com_date DESC');
-        $comments->execute(array($postId));
-
+        $sql = 'SELECT com_id AS id, com_author AS author , com_content AS comment, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCommentCreated 
+                                  FROM comment WHERE tick_id = ? ORDER BY com_date DESC';
+        $comments = $this->sqlPrepare($sql, array($postId));
         $result = $comments->fetchAll();
 
         return $result;
@@ -44,21 +42,11 @@ class CommentManager extends Bdd
      */
     public function deleteComment($comId)
     {
-        $req = $this->connexionDb()->prepare('DELETE FROM comment WHERE com_id = ?');
-        $req->execute(array($comId));
+        $sql = 'DELETE FROM comment WHERE com_id = ?';
+        $result = $this->sqlPrepare($sql, array($comId));
+
+        return $result;
     }
 
-    /**
-     * Obtenir les commentaires reportés
-     * @return bool
-     */
-    public function getReportedComments()
-    {
-        $req = $this->connexionDb()->prepare('SELECT com_id AS id, DATE_FORMAT(com_date, \'%d/%m/%Y\') AS dateCreated, 
-        com_author AS author, com_content AS content FROM comment WHERE com_reported = 1 ORDER BY com_date DESC ');
-        $commentsReported = $req->execute();
-
-        return $commentsReported;
-    }
 
 }

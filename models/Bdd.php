@@ -10,7 +10,7 @@ class Bdd
 
     const HOST = 'localhost';
     const DBNAME = 'blogforteroche';
-    const USERNAME = 'root';
+    const USERNAME = 'augustin';
     const PASSWORD = 'Commercy1411';
 
     protected $bdd;
@@ -22,7 +22,7 @@ class Bdd
     public function __construct()
     {
         try {
-            $this->bdd = new PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME.';charset=utf8',''.self::DBNAME.'',''.self::PASSWORD.'');
+            $this->bdd = new PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME.';charset=utf8',''.self::USERNAME.'',''.self::PASSWORD.'');
             $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());

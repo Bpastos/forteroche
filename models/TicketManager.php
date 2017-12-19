@@ -4,20 +4,19 @@
 namespace models;
 
 
-class TicketManager extends Bdd
+class TicketManager extends Sql
 {
 
     /**
      * Ajoute un ticket à la bdd
      * @param Ticket $ticket
      */
-    public function add(Ticket $ticket)
+    public function add($title, $content, $date)
     {
-        $req = $this->connexionDb()->prepare('INSERT INTO ticket(tick_title, tick_content,tick_date) VALUES (:title, :content, NOW())');
-        $req->bindValue(':title', $ticket->getTickTitle());
-        $req->bindValue(':content',$ticket->getTickContent());
+        $sql = 'INSERT INTO ticket(tick_title, tick_content,tick_date) VALUES (?, ?, NOW())';
+        $result = $this->sqlPrepare($sql, array($title, $content, $date));
 
-        $req->execute();
+        return $result;
     }
 
     /**
@@ -28,11 +27,11 @@ class TicketManager extends Bdd
      */
     public function getTicket($postId)
     {
-        $req = $this->connexionDb()->prepare('SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
-        tick_title AS title, tick_content AS content FROM ticket WHERE tick_id = ?');
-        $req->execute(array($postId));
+        $sql = 'SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
+        tick_title AS title, tick_content AS content FROM ticket WHERE tick_id = ?';
+        $result = $this->sqlPrepare($sql, array($postId));
 
-        $post = $req->fetch();
+        $post = $result->fetch();
 
         return $post;
     }
@@ -43,10 +42,11 @@ class TicketManager extends Bdd
      */
     public function getTickets()
     {
-        $req = $this->connexionDb()->query('SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
-        tick_title AS title, tick_content AS content FROM ticket ORDER BY tick_date DESC LIMIT 0, 5');
+        $sql = 'SELECT tick_id AS id, DATE_FORMAT(tick_date, \'%d/%m/%Y\') AS dateCreated,
+        tick_title AS title, tick_content AS content FROM ticket ORDER BY tick_date DESC';
+        $result = $this->sqlPrepare($sql);
 
-        return $req;
+        return $result;
     }
 
 
@@ -56,35 +56,39 @@ class TicketManager extends Bdd
      * @param $content
      * @param $tickId
      */
-    public function updateTicket($title, $content, $tickId)
+    protected function updateTicket($title, $content, $tickId)
     {
-        $req = $this->connexionDb()->prepare('UPDATE ticket SET tick_title = :title, tick_content = :content, 
-        tick_date = NOW() WHERE tick_id = :tickId');
-        $req->bindValue(':title', $title);
-        $req->bindValue(':content', $content);
-        $req->bindValue(':tickId', (int) $tickId);
-        $req->execute();
+        $sql = 'UPDATE ticket SET tick_title = ?, tick_content = ?, 
+        tick_date = NOW() WHERE tick_id = ?';
 
+        $result = $this->sqlPrepare($sql, array($title, $content, $tickId));
+
+        return $result;
     }
+
+
 
     /**
      * Supprime un ticket
      * @param $tickId
      */
-    public function deleteTicket($tickId)
+    protected function deleteTicket($tickId)
     {
-        $req = $this->connexionDb()->prepare('DELETE FROM ticket WHERE tick_id = ?');
-        $req->execute(array($tickId));
+        $sql = 'DELETE FROM ticket WHERE tick_id = ?';
+        $deleteTicket = $this->sqlPrepare($sql, array($tickId));
+        return $deleteTicket;
     }
 
     /**
      * Compte le nombre de ticket pour la pagination
      * @return mixed
      */
-    public function count()
+    protected function getTicketsNumber()
     {
-        $result = $this->connexionDb()->query('SELECT COUNT(*) FROM ticket')->fetchColumn();
-        return $result;
+        $sql = 'SELECT COUNT(*) AS ticketsNb FROM ticket';
+        $result = $this->sqlPrepare($sql);
+        $line = $result->fetch();
+        return $line['ticketsNb'];
     }
 
 }
