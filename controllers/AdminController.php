@@ -4,7 +4,7 @@ namespace controllers;
 
 use models\User;
 
-class LoginControllers
+class AdminController
 {
     private $user;
 
@@ -16,6 +16,11 @@ class LoginControllers
 
     public function login()
     {
+
+
+
+
+
 
     }
 

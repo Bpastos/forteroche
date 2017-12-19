@@ -77,7 +77,10 @@ class TicketManager extends Bdd
         $req->execute(array($tickId));
     }
 
-
+    /**
+     * Compte le nombre de ticket pour la pagination
+     * @return mixed
+     */
     public function count()
     {
         $result = $this->connexionDb()->query('SELECT COUNT(*) FROM ticket')->fetchColumn();

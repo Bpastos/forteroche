@@ -1,7 +1,7 @@
 <div class="section">
     <div class="container">
         <form method="POST" action="?action=login">
-            <p class="flow-text center">Vous devez être connecté pour accéder à cette zone.</p>
+            <p class="flow-text center">Centre d'administration</p>
             <div class="row">
                 <div class="input-group col s12">
                     <input id="login" name="login" type="text" required autofocus>
@@ -17,7 +17,7 @@
             <?php if (isset($ErrorMsg)): ?>
                 <p class="errorTest red-text"><?= $ErrorMsg ?></p>
             <?php endif; ?>
-            <button type="submit" class="btn waves-effect waves-light" <i class="glyphicon glyphicon-send"></i>Connexion</button>
+            <button type="submit" class="btn waves-effect waves-light" <i class="glyphicon glyphicon-send"></i>Connexion
         </form>
     </div>
 </div>

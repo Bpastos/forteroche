@@ -35,9 +35,9 @@ class Router extends Controllers
                     } else {
                         throw new Exception('Aucun identifiant de billet envoyé');
                     }
-                } /*elseif ($_GET['action'] == 'login') {
+                } elseif ($_POST['connexion'] == 'login') {
 
-                }*/
+                }
             } else {
                 $this->listPosts();
             }
