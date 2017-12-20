@@ -1,3 +1,8 @@
+<?php
+session_start();
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -19,7 +24,7 @@
 
                     </div>
                     <h1 style="text-align: center">Un billet simple pour l'Alaska</h1>
-                    <?php include '../views/nav.php';?>
+                    <?php include '../views/template/nav.php';?>
                 </header>
 
             </div>
@@ -30,9 +35,13 @@
 
             </div>
             <div class="container-fluid">
-                <?php include '../views/footer.php'; ?>
+                <?php include '../views/template/footer.php'; ?>
             </div>
 
 
     </body>
 </html>
+
+<?php
+ob_end_flush();
+?>

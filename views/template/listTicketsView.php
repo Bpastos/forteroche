@@ -32,4 +32,4 @@ $posts->closeCursor();
 
 $content = ob_get_clean();
 
-require 'template/default.php'; ?>
+require 'default.php'; ?>

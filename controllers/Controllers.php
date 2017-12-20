@@ -7,21 +7,21 @@ namespace controllers;
 use models\CommentManager;
 use models\TicketManager;
 
-class Controllers
+
+class Controllers extends LoginController
 {
 
 
-    private $ticket;
-
-    private $comment;
-
-
-    public function __construct()
-    {
-        $this->ticket = new TicketManager();
-        $this->comment = new CommentManager();
-    }
-
+    /**
+     * Ajoute un commentaire au billet correspondant à son id
+     *
+     * @param $author
+     * @param $content
+     * @param $tickId
+     *
+     * @return \PDOStatement
+     * @throws \Exception
+     */
     public function addComment ($author, $content, $tickId)
     {
         $commentM = new CommentManager();
@@ -35,15 +35,21 @@ class Controllers
 
     }
 
+    /**
+     * Affiche la liste des billets
+     */
     public function listPosts()
     {
         $ticketManager = new TicketManager();
         $posts = $ticketManager->getTickets();
 
-        require '../views/listTicketsView.php';
+        require '../views/template/listTicketsView.php';
 
     }
 
+    /**
+     * Affiche un billet avec ces commentaires
+     */
     public function post()
     {
         $ticketM = new TicketManager();
@@ -52,9 +58,8 @@ class Controllers
         $post = $ticketM->getTicket($_GET['id']);
         $comment = $commentM->getComments($_GET['id']);
 
-        require '../views/ticketView.php';
+        require '../views/template/ticketView.php';
     }
-
 
 
 }

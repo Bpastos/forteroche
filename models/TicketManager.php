@@ -56,7 +56,7 @@ class TicketManager extends Sql
      * @param $content
      * @param $tickId
      */
-    protected function updateTicket($title, $content, $tickId)
+    public function updateTicket($title, $content, $tickId)
     {
         $sql = 'UPDATE ticket SET tick_title = ?, tick_content = ?, 
         tick_date = NOW() WHERE tick_id = ?';
@@ -72,7 +72,7 @@ class TicketManager extends Sql
      * Supprime un ticket
      * @param $tickId
      */
-    protected function deleteTicket($tickId)
+    public function deleteTicket($tickId)
     {
         $sql = 'DELETE FROM ticket WHERE tick_id = ?';
         $deleteTicket = $this->sqlPrepare($sql, array($tickId));
@@ -83,7 +83,7 @@ class TicketManager extends Sql
      * Compte le nombre de ticket pour la pagination
      * @return mixed
      */
-    protected function getTicketsNumber()
+    public function getTicketsNumber()
     {
         $sql = 'SELECT COUNT(*) AS ticketsNb FROM ticket';
         $result = $this->sqlPrepare($sql);

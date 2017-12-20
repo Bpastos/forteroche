@@ -6,11 +6,10 @@
 
     </div>
     <div class="col-md-4">
-        <button class="btn btn-primary red">
-            <a href="?action=admin">Administration</a>
-        </button>
+        <a href="index.php?action=login">Administration</a>
     </div>
 
 
 </footer>
+
 

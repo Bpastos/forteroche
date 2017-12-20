@@ -3,7 +3,7 @@
                 <ul class="nav navbar-nav">
                     <li> <a href="index.php?action=home">Accueil</a> </li>
                     <li> <a href="#">A propos</a> </li>
-                    <li> <a href="#">Contact</a> </li>
+                    <li> <a href="index.php?action=contact">Contact</a> </li>
                 </ul>
                 <form class="navbar-form navbar-right inline-form">
                     <div class="form-group">

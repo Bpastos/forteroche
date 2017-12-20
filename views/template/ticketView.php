@@ -56,4 +56,4 @@ ob_start(); ?>
     <p><a href="index.php?action=home">Retour à la liste des billets</a></p>
 <?php $content = ob_get_clean();
 
-require 'template/default.php'; ?>
+require 'default.php'; ?>

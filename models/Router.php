@@ -5,6 +5,7 @@ namespace models;
 
 use PHPUnit\Runner\Exception;
 use controllers\Controllers;
+use controllers\LoginController;
 class Router extends Controllers
 {
 
@@ -35,15 +36,19 @@ class Router extends Controllers
                     } else {
                         throw new Exception('Aucun identifiant de billet envoyé');
                     }
-                } elseif ($_POST['connexion'] == 'login') {
-
+                } elseif ($_GET['action'] == 'contact') {
+                    $this->displayContact();
+                } elseif ($_GET['action'] == 'sendContact') {
+                    $this->emailC();
+                    } elseif ($_GET['action'] == 'login') {
+                    $this->displayLog();
                 }
-            } else {
+                } else {
                 $this->listPosts();
             }
         } catch (Exception $e) {
             $errorMessage = $e->getMessage();
-            require '../views/errorView.php';
+            require '../views/template/errorView.php';
         }
 
     }
