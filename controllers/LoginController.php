@@ -4,9 +4,10 @@
 namespace controllers;
 
 
+use models\LoginManager;
 use views\Login;
 
-class LoginController extends ContactController
+class LoginController extends LoginManager
 {
 
     protected function displayLog() {

@@ -5,7 +5,7 @@ namespace models;
 
 use PHPUnit\Runner\Exception;
 use controllers\Controllers;
-use controllers\LoginController;
+
 class Router extends Controllers
 {
 
@@ -40,11 +40,14 @@ class Router extends Controllers
                     $this->displayContact();
                 } elseif ($_GET['action'] == 'sendContact') {
                     $this->emailC();
-                    } elseif ($_GET['action'] == 'login') {
+                } elseif ($_GET['action'] == 'login') {
                     $this->displayLog();
+                } elseif ($_GET['action'] == 'admin') {
+                    $this->login();
                 }
-                } else {
+                else {
                 $this->listPosts();
+                }
             }
         } catch (Exception $e) {
             $errorMessage = $e->getMessage();

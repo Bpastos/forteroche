@@ -13,7 +13,7 @@ class ContactManager extends Contact
                 $objet,
                 $expediteur,
                 $email,
-                $detinataire = 'augustin.kavera@gmail.com';
+                $destinataire = 'augustin.kavera@gmail.com';
 
 
     protected function message()
@@ -28,7 +28,7 @@ class ContactManager extends Contact
     protected function sendMail()
     {
         $this->message();
-        $destination = $this->detinataire;
+        $destination = $this->destinataire;
         $expedition = $this->expediteur;
         $objet = $this->objet;
         $email = $this->email;

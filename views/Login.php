@@ -2,26 +2,32 @@
 namespace views;
 
 
-use controllers\LoginController;
 
-class Login extends LoginController
+use views\Administration\Admin;
+
+
+class Login extends Admin
 {
 
     public function logForm() {
-        ?>
+
+            $title = 'Page de connexion';
+            include '../views/template/header.php';
+            include '../views/template/nav.php'; ?>
+
             <div class="section">
                 <div class="container">
                     <form method="POST" action="index.php?action=admin">
-                        <p class="flow-text center">Centre d'administration</p>
+                        <h1 class="text-center">Connexion</h1>
                         <div class="row">
-                            <div class="input-group col s12">
-                                <input id="login" name="login" type="text" required autofocus>
+                            <div class="col-sm-12">
+                                <input id="login" class="form-control" name="login" type="text" required autofocus>
                                 <label class="active" for="login">Identifiant</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-group col s12">
-                                <input id="psw" name="psw" type="password" required autofocus>
+                            <div class="col-sm-12">
+                                <input id="psw" class="form-control" name="psw" type="password" required autofocus>
                                 <label for="psw">Mot de passe</label>
                             </div>
                         </div>
